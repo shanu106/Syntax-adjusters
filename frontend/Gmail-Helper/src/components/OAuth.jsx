@@ -1,26 +1,29 @@
-import {GoogleOAuthProvider, GoogleLogin} from '@react-oauth/google';
+import {GoogleOAuthProvider,useGoogleLogin, GoogleLogin} from '@react-oauth/google';
 
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const oAuth = () => {
+  const navigate = useNavigate();
+  const login = useGoogleLogin({
+    flow:'implicit',
+    scope:'https://www.googleapis.com/auth/gmail.readonly',
+    onSuccess:(tokenResponse)=>{
+      const accessToken = tokenResponse.access_token;
+      console.log(accessToken);
+      const state = { accessToken };
+      navigate('/dashboard', { state });
+    },
+    onError: (error) => {
+      console.log('Login Failed:', error);
+    },
+  })
   return (
-    
-      
-   
-
-<GoogleOAuthProvider clientId="1054893857630-onk7l9ld66r5oe30befactp9ac7tvl85.apps.googleusercontent.com">
-    <GoogleLogin
-    onSuccess={(credentialResponse)=>{
-        const accessToken = credentialResponse.access_token;
-    }}
-    onError={()=>console.log('Login Failed')}
-    useOneTap
-    scope="https://www.googleapis.com/auth/gmail.readonly"
-    redirectUri="http://localhost:5173/auth/google/callback"
-    />
-    </GoogleOAuthProvider>
-   
-)
+    <div>
+      <h1>Welcome to the Gmail Helper</h1>
+      <button onClick={() => login()}>Login with Google</button>
+    </div>
+  )
 }
 
 export default oAuth

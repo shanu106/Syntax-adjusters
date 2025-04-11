@@ -10,8 +10,13 @@ const app = express();
 import dotenv from 'dotenv';
 import './utils/passport.js';
 import  aiRoutes from'./routes/ai.js';
+import './routes/email.route.js'
 
-
+import  cors from 'cors';
+import bodyParser from 'body-parser';
+app.use(cors());
+app.use(bodyParser.json());
+import emailRoutes from './routes/email.route.js';
 // Middleware to parse 
 app.use(express.json());
 
@@ -24,6 +29,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/api/email', emailRoutes);
 app.use('/api/ai', aiRoutes);
 // routes starts here 
 

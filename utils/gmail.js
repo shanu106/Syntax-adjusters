@@ -1,6 +1,6 @@
 import {google} from 'googleapis';
 
-async function getEmails(accessToken){
+export const getEmails = async(accessToken)=>{
     const oauth2client = new google.auth.OAuth2();
     oauth2client.setCredentials({access_token: accessToken});
 
@@ -30,4 +30,3 @@ async function getEmails(accessToken){
     return emailData;
 }
 
-export default getEmails;
