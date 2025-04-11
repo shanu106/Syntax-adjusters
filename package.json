@@ -1,0 +1,30 @@
+{
+  "name": "gmail-client",
+  "version": "1.0.0",
+  "description": "gmail extraction, classification, suggest replies",
+  "main": "app.js",
+  "scripts": {
+    "test": "npx nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanu106/indore.git"
+  },
+  "author": "shahnawaj rangrej",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shanu106/indore/issues"
+  },
+  "homepage": "https://github.com/shanu106/indore#readme",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "googleapis": "^148.0.0",
+    "openai": "^4.93.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
